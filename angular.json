@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cjbike": {
+    "PruebaComponent": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cjbike",
+            "outputPath": "dist/prueba-component",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -25,14 +25,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/bootstrap/css/bootstrap.min.css",
-              "src/assets/css/main.css"
-            ],            
-            "scripts": [
-              "src/assets/js/jquery-1.11.3.min.js",
-              "src/assets/bootstrap/js/bootstrap.min.js"
-              ]
+              "src/styles.css"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -65,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cjbike:build:production"
+              "browserTarget": "PruebaComponent:build:production"
             },
             "development": {
-              "browserTarget": "cjbike:build:development"
+              "browserTarget": "PruebaComponent:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cjbike:build"
+            "browserTarget": "PruebaComponent:build"
           }
         },
         "test": {
@@ -101,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "b8115f51-d76e-474b-89e2-2a32bde62f40"
+    "analytics": "faeb3df8-86d7-46af-aae5-243ae159368b"
   }
 }
