@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import axios from 'axios';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -12,6 +14,8 @@ export class RegisterComponent {
   name: string = '';
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
+  constructor(private router: Router) { }
 
   onSubmit() {
     const data = { name: this.name, email: this.email, password: this.password };
@@ -19,9 +23,15 @@ export class RegisterComponent {
     axios.post('http://localhost:3000/register', data)
       .then(response => {
         console.log('Respuesta del servidor:', response.data);
+        window.alert('Te has registrado exitosamente');
+        this.router.navigate(['/login']);
       })
       .catch(error => {
+        this.errorMessage = 'Ya tienes una cuenta'; // Mensaje de error personalizado
         console.error('Error al enviar la solicitud:', error);
-      });
+
+      window.alert(this.errorMessage);
+
+  });
   }
 }
