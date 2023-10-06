@@ -29,6 +29,22 @@ function registerUser(req, res) {
   });
 }
 
+function loginUser(req, res) {
+  const { email, password } = req.body;
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      res.send(`Usuario autenticado: ${user.uid}`);
+    })
+    .catch((error) => {
+      res.status(500).send(`Error al autenticar usuario: ${error.message}`);
+    });
+}
+
 module.exports = {
   registerUser,
+  loginUser,
 }
+
+

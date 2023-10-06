@@ -6,10 +6,10 @@
     <h2>INICIAR SESIÓN</h2>
     <div class="form">
      <div class="inputBox">
-      <input type="text" required> <i>Usuario</i>
+      <input type="email" [(ngModel)]="email" required> <i>Correo electrónico</i>
      </div>
      <div class="inputBox">
-      <input type="password" required> <i>Contraseña</i>
+      <input type="password" [(ngModel)]="password" required> <i>Contraseña</i>
      </div>
      <div class="links">
       <a href="#">¿Olvidaste tu Contraseña?</a> <a [routerLink]="['/register']">Regístrate</a>
