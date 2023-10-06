@@ -42,9 +42,20 @@ function loginUser(req, res) {
     });
 }
 
+function logoutUser(req, res) {
+  auth.signOut()
+    .then(() => {
+      res.send('Usuario desconectado');
+    })
+    .catch((error) => {
+      res.status(500).send(`Error al desconectar usuario: ${error.message}`);
+    });
+}
+
 module.exports = {
   registerUser,
   loginUser,
+  logoutUser
 }
 
 
