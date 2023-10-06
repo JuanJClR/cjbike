@@ -11,6 +11,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProductosComponent } from './productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RegisterComponent } from './register/register.component';
     ContactComponent,
     LoginComponent,
     RegisterComponent,
+    ProductosComponent,
   ],
   imports: [
     FormsModule,
