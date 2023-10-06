@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 *
 {
   margin: 0;
@@ -229,4 +228,8 @@ section .signin .content .form .inputBox2 #input
 .signin .content .form .links2 a:nth-child(2) {
   color: #0f0;
   font-weight: 600;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
 }
