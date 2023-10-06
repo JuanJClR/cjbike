@@ -12,54 +12,22 @@ body
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #000;
+  background-image: url(../../assets/img/hero-bg.jpg);
+
 }
 section
 {
+  background-image: url(../../assets/img/hero-bg.jpg);
   position: absolute;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2px;
-  flex-wrap: wrap;
   overflow: hidden;
 }
-section::before
-{
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(#000,#0f0,#000);
-  animation: animate 5s linear infinite;
-}
-@keyframes animate
-{
-  0%
-  {
-    transform: translateY(-100%);
-  }
-  100%
-  {
-    transform: translateY(100%);
-  }
-}
-section span
-{
-  position: relative;
-  display: block;
-  width: calc(6.25vw - 2px);
-  height: calc(6.25vw - 2px);
-  background: #181818;
-  z-index: 2;
-  transition: 1.5s;
-}
-section span:hover
-{
-  background: #0f0;
-  transition: 0s;
+section::before{
+  filter: blur(5px); /* Ajusta el valor según lo desees */
 }
 
 section .signin
@@ -85,10 +53,14 @@ section .signin .content
   flex-direction: column;
   gap: 40px;
 }
+section .signin .content p
+{
+  color: #fff;
+}
 section .signin .content h2
 {
   font-size: 2em;
-  color: #0f0;
+  color: #F28123;
   text-transform: uppercase;
 }
 section .signin .content .form
@@ -149,13 +121,13 @@ section .signin .content .form .inputBox i
 }
 .signin .content .form .links a:nth-child(2)
 {
-  color: #0f0;
+  color: #F28123;
   font-weight: 600;
 }
 .signin .content .form .inputBox input[type="submit"]
 {
   padding: 10px;
-  background: #0f0;
+  background: #F28123;
   color: #000;
   font-weight: 600;
   font-size: 1.35em;
@@ -193,7 +165,7 @@ section .signin .content .form .inputBox2 #input
 {
   position: relative;
   width: 100%;
-  background: #0f0;
+  background: #F28123;
   border: none;
   outline: none;
   color: rgb(255, 255, 255);
@@ -203,7 +175,7 @@ section .signin .content .form .inputBox2 #input
 .signin .content .form .inputBox2 input[type="submit"]
 {
   padding: 10px;
-  background: #0f0;
+  background: #F28123;
   color: #000;
   font-weight: 600;
   font-size: 1.35em;
@@ -227,6 +199,6 @@ section .signin .content .form .inputBox2 #input
 }
 
 .signin .content .form .links2 a:nth-child(2) {
-  color: #0f0;
+  color: #F28123;
   font-weight: 600;
 }

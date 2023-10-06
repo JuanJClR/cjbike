@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import axios from 'axios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,28 @@ export class LoginComponent {
 
   email: string = '';
   password: string = '';
+  errorMessage: string = '';
+
+  constructor(private router: Router) { }
 
   onSubmit() {
-    const data = {email: this.email, password: this.password };
+    const data = { email: this.email, password: this.password };
 
-    axios.post('http://localhost:3000/login', data)
+    axios.get('http://localhost:3000/login', { params: data })
       .then(response => {
-        console.log('Respuesta del servidor:', response.data);
+        const userData = response.data;
+        console.log('Respuesta del servidor:', userData);
+
+        // Utilizar el nombre del usuario
+        const nombreUsuario = userData.nombre;
+        window.alert(`Bienvenido, ${nombreUsuario}!`);
+
+        // Navegar a la página de inicio, por ejemplo
+        this.router.navigate(['/home']);
       })
       .catch(error => {
+        this.errorMessage = 'Credenciales inválidas';
         console.error('Error al enviar la solicitud:', error);
       });
   }
 }
-
