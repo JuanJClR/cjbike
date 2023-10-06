@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProductosComponent } from './productos/productos.component';
 import { LogoCarouselComponent } from './logo-carousel/logo-carousel.component';
 import { SingleProductComponent } from './single-product/single-product.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SingleProductComponent } from './single-product/single-product.componen
     ProductosComponent,
     LogoCarouselComponent,
     SingleProductComponent,
+    CartComponent,
   ],
   imports: [
     FormsModule,

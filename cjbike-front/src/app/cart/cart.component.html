@@ -1,0 +1,117 @@
+<!-- Sección de Carrito de Bicicletas -->
+<app-head></app-head>
+
+<!-- Sección de Miga de Pan -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Bicicletas Frescas y Orgánicas</p>
+          <h1>Carrito</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin de la Sección de Miga de Pan -->
+
+<!-- Contenido del Carrito -->
+<div class="cart-section mt-150 mb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12">
+        <div class="cart-table-wrap">
+          <table class="cart-table">
+            <thead class="cart-table-head">
+              <tr class="table-head-row">
+                <th class="product-remove"></th>
+                <th class="product-image">Imagen del Producto</th>
+                <th class="product-name">Nombre</th>
+                <th class="product-price">Precio</th>
+                <th class="product-quantity">Cantidad</th>
+                <th class="product-total">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Fila del Producto 1 -->
+              <tr class="table-body-row">
+                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                <td class="product-image"><img src="../../assets/img/products/bicicleta.webp" alt=""></td>
+                <td class="product-name">Bicicleta de Montaña</td>
+                <td class="product-price">$850</td>
+                <td class="product-quantity"><input type="number" placeholder="0"></td>
+                <td class="product-total">$850</td>
+              </tr>
+              <!-- Fila del Producto 2 -->
+              <tr class="table-body-row">
+                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                <td class="product-image"><img src="../../assets/img/products/jersey.webp" alt=""></td>
+                <td class="product-name">Jersey de ruta</td>
+                <td class="product-price">$700</td>
+                <td class="product-quantity"><input type="number" placeholder="0"></td>
+                <td class="product-total">$700</td>
+              </tr>
+              <!-- Fila del Producto 3 -->
+              <tr class="table-body-row">
+                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+                <td class="product-image"><img src="../../assets/img/products/casco.webp" alt=""></td>
+                <td class="product-name">Casco</td>
+                <td class="product-price">$350</td>
+                <td class="product-quantity"><input type="number" placeholder="0"></td>
+                <td class="product-total">$350</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <!-- Resumen del Pedido -->
+        <div class="total-section">
+          <table class="total-table">
+            <thead class="total-table-head">
+              <tr class="table-total-row">
+                <th>Total</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="total-data">
+                <td><strong>Subtotal: </strong></td>
+                <td>$2000</td>
+              </tr>
+              <tr class="total-data">
+                <td><strong>Envío: </strong></td>
+                <td>$150</td>
+              </tr>
+              <tr class="total-data">
+                <td><strong>Total: </strong></td>
+                <td>$2150</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cart-buttons">
+            <a href="cart.html" class="boxed-btn">Actualizar Carrito</a>
+            <a href="checkout.html" class="boxed-btn black">Pagar</a>
+          </div>
+        </div>
+
+        <!-- Sección de Cupones -->
+        <div class="coupon-section">
+          <h3>Aplicar Cupón</h3>
+          <div class="coupon-form-wrap">
+            <form action="index.html">
+              <p><input type="text" placeholder="Cupón"></p>
+              <p><input type="submit" value="Aplicar"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin del Contenido del Carrito -->
+
+<app-logo-carousel></app-logo-carousel>
+<app-footer></app-footer>

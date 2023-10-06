@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import axios from 'axios';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -27,11 +26,9 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       })
       .catch(error => {
-        this.errorMessage = 'Ya tienes una cuenta'; // Mensaje de error personalizado
+        this.errorMessage = error.response ? error.response.data : 'Error desconocido';
         console.error('Error al enviar la solicitud:', error);
-
-      window.alert(this.errorMessage);
-
-  });
+        window.alert(this.errorMessage);
+      });
   }
 }

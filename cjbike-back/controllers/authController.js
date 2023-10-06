@@ -13,16 +13,13 @@ function registerUser(req, res) {
   .then((userRecord) => {
     // Usuario creado exitosamente
     // Ahora, guardamos el nombre en Firestore
-    db.collection('usuarios').doc(userRecord.uid).set({
+    return db.collection('usuarios').doc(userRecord.uid).set({
       nombre: name,
       email: email
-    })
-    .then(() => {
-      res.send(`Usuario registrado: ${userRecord.uid}`);
-    })
-    .catch((error) => {
-      res.status(500).send(`Error al guardar el nombre en Firestore: ${error.message}`);
     });
+  })
+  .then(() => {
+    res.send(`Usuario registrado: ${userRecord.uid}`);
   })
   .catch((error) => {
     res.status(500).send(`Error al registrar usuario: ${error.message}`);
@@ -35,7 +32,7 @@ function loginUser(req, res) {
   auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      res.send(`Usuario autenticado: ${user.uid}`);
+      res.send({ uid: user.uid });
     })
     .catch((error) => {
       res.status(500).send(`Error al autenticar usuario: ${error.message}`);
@@ -52,10 +49,13 @@ function logoutUser(req, res) {
     });
 }
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
 module.exports = {
   registerUser,
   loginUser,
   logoutUser
-}
-
-
+};

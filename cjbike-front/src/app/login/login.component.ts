@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import axios from 'axios';
 import { Router } from '@angular/router';
 
@@ -19,16 +19,13 @@ export class LoginComponent {
   onSubmit() {
     const data = { email: this.email, password: this.password };
 
-    axios.get('http://localhost:3000/login', { params: data })
+    axios.post('http://localhost:3000/login', data)
       .then(response => {
         const userData = response.data;
         console.log('Respuesta del servidor:', userData);
 
-        // Utilizar el nombre del usuario
-        const nombreUsuario = userData.nombre;
-        window.alert(`Bienvenido, ${nombreUsuario}!`);
+        window.alert('Bienvenido!');
 
-        // Navegar a la página de inicio, por ejemplo
         this.router.navigate(['/home']);
       })
       .catch(error => {
