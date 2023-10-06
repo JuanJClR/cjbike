@@ -29,15 +29,17 @@ function registerUser(req, res) {
 function loginUser(req, res) {
   const { email, password } = req.body;
 
-  auth.signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      res.send({ uid: user.uid });
+  admin.auth().getUserByEmail(email)
+    .then((userRecord) => {
+      const uid = userRecord.uid;
+      console.log('Datos del usuario autenticado:', userRecord.toJSON());
+      res.send({ uid });
     })
     .catch((error) => {
       res.status(500).send(`Error al autenticar usuario: ${error.message}`);
     });
 }
+
 
 function logoutUser(req, res) {
   auth.signOut()
@@ -49,10 +51,6 @@ function logoutUser(req, res) {
     });
 }
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something went wrong!');
-});
 
 module.exports = {
   registerUser,

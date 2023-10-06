@@ -6,6 +6,12 @@ const serviceAccount = require('C:\\Users\\camil\\OneDrive\\Escritorio\\clave.js
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
+
 app.use(cors());
 app.use(express.json());
 
