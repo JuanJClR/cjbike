@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProductosComponent } from './productos/productos.component';
 import { LogoCarouselComponent } from './logo-carousel/logo-carousel.component';
+import { SingleProductComponent } from './single-product/single-product.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LogoCarouselComponent } from './logo-carousel/logo-carousel.component';
     RegisterComponent,
     ProductosComponent,
     LogoCarouselComponent,
+    SingleProductComponent,
   ],
   imports: [
     FormsModule,
