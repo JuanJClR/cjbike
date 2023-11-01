@@ -4,6 +4,9 @@
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 text-center">
 					<div class="main-menu-wrap">
+            <div *ngIf="displayName">
+              <p>Bienvenido, {{ displayName }}</p>
+            </div>
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="index.html">
@@ -17,7 +20,7 @@
 							<ul>
 								<li class="current-list-item"><a [routerLink]="['/home']">Inicio</a></li>
 								<li><a [routerLink]="['/about']">Nosotros</a></li>
-								<li><a [routerLink]="['/prueba']">Contacto</a></li>
+								<li><a [routerLink]="['/contact']">Contacto</a></li>
 								<li><a [routerLink]="['/product']">Tienda</a></li>
 								<li>
 									<div class="header-icons">
