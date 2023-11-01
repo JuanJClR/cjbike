@@ -37,11 +37,11 @@
             <div *ngFor="let producto of productos" class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a [routerLink]="['/detail']"><img [src]="producto.img" alt=""></a>
+                        <a (click)="navigateToDetalleProducto(producto)"><img [src]="producto.img" alt=""></a>
                     </div>
                     <h3>{{ producto.nombre }}</h3>
                     <p class="product-price"><span>Por Unidad</span> ${{ producto.precio }} </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Añadir al carrito</a>
+                    <a [routerLink]="['/detail']" class="cart-btn"><i class="fas fa-shopping-cart"></i> Añadir al carrito</a>
                 </div>
             </div>
         </div>
