@@ -24,6 +24,9 @@ export class LoginComponent {
         const userData = response.data;
         console.log('Respuesta del servidor:', userData);
 
+        // Almacena el token en el localStorage
+        localStorage.setItem('token', userData.token);
+
         window.alert('Bienvenido!');
 
         this.router.navigate(['/home']);
