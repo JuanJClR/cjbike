@@ -27,13 +27,11 @@
                     </div>
                     <h3>{{ producto.nombre }}</h3>
                     <p class="product-price"><span>Por Unidad</span> ${{ producto.precio }} </p>
-                    <a [routerLink]="['/detail']" class="cart-btn"><i class="fas fa-shopping-cart"></i> Añadir al carrito</a>
+                    <!-- Modificación aquí: -->
+                    <a (click)="addToCart(producto)" class="cart-btn"><i class="fas fa-shopping-cart"></i> Añadir al carrito</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- end products -->
-
-
-

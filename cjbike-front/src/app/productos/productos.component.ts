@@ -1,6 +1,9 @@
+// productos.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { Router } from '@angular/router';
+import { CarritoService } from '../cart/cart.service'; // Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-productos',
@@ -11,7 +14,7 @@ export class ProductosComponent implements OnInit {
 
   productos: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private carritoService: CarritoService) {}
 
   ngOnInit() {
     this.getProducts();
@@ -23,6 +26,17 @@ export class ProductosComponent implements OnInit {
         this.productos = response.data;
       });
   }
+
+  addToCart(producto: any): void {
+    const cantidad = 1; // Puedes establecer la cantidad predeterminada o permitir al usuario elegir
+  
+    // Modificación aquí: Agrega la cantidad al objeto del producto
+    const productoConCantidad = { ...producto, cantidad };
+  
+    this.carritoService.agregarAlCarrito(productoConCantidad);
+    window.alert('Producto añadido al carrito');
+  }
+  
 
   navigateToDetalleProducto(producto: any) {
     this.router.navigate(['/producto', producto.nombre], { state: { producto } });

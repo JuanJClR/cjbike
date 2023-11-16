@@ -34,32 +34,16 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Fila del Producto 1 -->
-              <tr class="table-body-row">
-                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                <td class="product-image"><img src="../../assets/img/products/bicicleta.webp" alt=""></td>
-                <td class="product-name">Bicicleta de Montaña</td>
-                <td class="product-price">$850</td>
-                <td class="product-quantity"><input type="number" placeholder="0"></td>
-                <td class="product-total">$850</td>
-              </tr>
-              <!-- Fila del Producto 2 -->
-              <tr class="table-body-row">
-                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                <td class="product-image"><img src="../../assets/img/products/jersey.webp" alt=""></td>
-                <td class="product-name">Jersey de ruta</td>
-                <td class="product-price">$700</td>
-                <td class="product-quantity"><input type="number" placeholder="0"></td>
-                <td class="product-total">$700</td>
-              </tr>
-              <!-- Fila del Producto 3 -->
-              <tr class="table-body-row">
-                <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                <td class="product-image"><img src="../../assets/img/products/casco.webp" alt=""></td>
-                <td class="product-name">Casco</td>
-                <td class="product-price">$350</td>
-                <td class="product-quantity"><input type="number" placeholder="0"></td>
-                <td class="product-total">$350</td>
+              <!-- Productos del Carrito -->
+              <tr *ngFor="let producto of carrito" class="table-body-row">
+                <td class="product-remove"><a (click)="removerDelCarrito(producto)"><i class="far fa-window-close"></i></a></td>
+                <td class="product-image"><img [src]="producto.img" alt=""></td>
+                <td class="product-name">{{ producto.nombre }}</td>
+                <td class="product-price">${{ producto.precio }}</td>
+                <td class="product-quantity">
+                  <input type="number" [(ngModel)]="producto.cantidad" (change)="actualizarCantidad(producto)" placeholder="0">
+                </td>
+                <td class="product-total">${{ producto.precio * producto.cantidad }}</td>
               </tr>
             </tbody>
           </table>
@@ -79,7 +63,7 @@
             <tbody>
               <tr class="total-data">
                 <td><strong>Subtotal: </strong></td>
-                <td>$2000</td>
+                <td>${{ calcularSubtotal() }}</td>
               </tr>
               <tr class="total-data">
                 <td><strong>Envío: </strong></td>
@@ -87,13 +71,13 @@
               </tr>
               <tr class="total-data">
                 <td><strong>Total: </strong></td>
-                <td>$2150</td>
+                <td>${{ calcularTotal() }}</td>
               </tr>
             </tbody>
           </table>
           <div class="cart-buttons">
-            <a href="cart.html" class="boxed-btn">Actualizar Carrito</a>
-            <a href="checkout.html" class="boxed-btn black">Pagar</a>
+            <button  class="boxed-btn">Actualizar Carrito</button>
+            <button (click)="realizarPago()" class="boxed-btn black">Pagar</button>
           </div>
         </div>
 
