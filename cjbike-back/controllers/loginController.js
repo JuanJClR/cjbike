@@ -1,34 +1,36 @@
 // Import the functions you need from the SDKs you need
-const firebase = require('firebase/app');
+const admin = require('firebase-admin');
+const { auth } = require('../firebase/config.js')
 const firebaseAuth = require('firebase/auth');
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDRrX4Eqrj7y5mi-ctBnsMdSI7arGj5hbk",
-  authDomain: "jcbike-74f69.firebaseapp.com",
-  databaseURL: "https://jcbike-74f69-default-rtdb.firebaseio.com",
-  projectId: "jcbike-74f69",
-  storageBucket: "jcbike-74f69.appspot.com",
-  messagingSenderId: "238225156704",
-  appId: "1:238225156704:web:02646297275406f3543105",
-  measurementId: "G-J3S1P61MVM"
-};
-
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const auth = firebaseAuth.getAuth(app);
+const { sign } = require("jsonwebtoken");
+// Importa SweetAlert
+const Swal = require('sweetalert2');
 
 async function Login(req, res) {
   try {
     const { email, password } = req.body;
 
     // Inicia sesión con correo electrónico y contraseña
-    await firebaseAuth.signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await firebaseAuth.signInWithEmailAndPassword(auth, email, password);
 
-    return res.status(200).send('Sesión iniciada con éxito');
+    // Obtiene el token de ID
+    const idToken = await userCredential.user.getIdToken();
+
+    // Usa el UID del usuario para obtener su información de Firestore
+    const doc = await admin.firestore().collection('usuarios').doc(userCredential.user.uid).get();
+
+    if (!doc.exists) {
+      console.log('No se encontró al usuario');
+      return res.status(404).send({ message: 'No se encontró al usuario' });
+    } else {
+      const usuario = doc.data();
+
+      return res.status(200).send({ message: 'Sesión iniciada', token: idToken, usuario: usuario.usuario });
+    }
   } catch (error) {
     console.log('Error al iniciar sesión:', error);
-    return res.status(500).send('Error al iniciar sesión');
+    return res.status(500).send({ message: 'Error al iniciar sesión' });
   }
 }
+
 module.exports = Login;
