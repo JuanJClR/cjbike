@@ -7,14 +7,5 @@ import { User } from 'firebase/auth';
   templateUrl: './head.component.html',
   styleUrls: ['./head.component.css']
 })
-export class HeadComponent implements OnInit {
-  user: User | null = null;
-
-  constructor(private afAuth: AngularFireAuth) { }
-
-  ngOnInit(): void {
-    this.afAuth.authState.subscribe(user => {
-      this.user = user;
-    });
-  }
+export class HeadComponent {
 }
