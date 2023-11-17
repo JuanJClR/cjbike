@@ -6,6 +6,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
 
 
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { LogoCarouselComponent } from './logo-carousel/logo-carousel.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { CartComponent } from './cart/cart.component';
 import { PruebaComponent } from './prueba/prueba.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDRrX4Eqrj7y5mi-ctBnsMdSI7arGj5hbk",
@@ -49,6 +51,7 @@ const firebaseConfig = {
     SingleProductComponent,
     CartComponent,
     PruebaComponent,
+    ProfileComponent,
   ],
   imports: [
     NgxPayPalModule,
@@ -58,7 +61,8 @@ const firebaseConfig = {
     AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

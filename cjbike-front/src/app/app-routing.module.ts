@@ -11,6 +11,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { CartComponent } from './cart/cart.component';
 import { PruebaComponent } from './prueba/prueba.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'producto/:nombre', component: SingleProductComponent },
   { path: 'prueba', component: PruebaComponent },
+  { path: 'perfil', component: ProfileComponent}
 ];
 
 @NgModule({

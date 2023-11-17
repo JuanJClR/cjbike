@@ -2769,3 +2769,24 @@ table.order-details tbody td {
   vertical-align: middle;
   width: 100%;
 }
+.breadcrumb-section2 {
+  padding: 20px 0;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  z-index: 1;
+  background-attachment: fixed;
+  padding-top: 100px;
+}
+
+.breadcrumb-section2:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background-color: #07212e;
+  z-index: -1;
+  opacity: 0.8;
+}

@@ -1,0 +1,54 @@
+<app-head></app-head>
+
+<div class="breadcrumb-section2 breadcrumb-bg">
+</div>
+
+<div class="contenedor">
+  <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+          <span class="font-weight-bold">{{ nombreUsuario ? nombreUsuario : 'Nombre de usuario' }}</span>
+          <span class="text-black-50">{{ email ? email : 'correo@ejemplo.com' }}</span><span> </span>
+        </div>
+      </div>
+      <div class="col-md-5 border-right">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-right">Configuración de Perfil</h4>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <label class="labels">Usuario</label>
+              <input type="text" class="form-control" placeholder="nombre" [(ngModel)]="nombreUsuario" readonly>
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Correo Electrónico</label>
+              <input type="text" class="form-control" placeholder="ingresa ID de correo electrónico" [(ngModel)]="email">
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Número de Teléfono</label>
+              <input type="text" class="form-control" placeholder="ingresa número de teléfono" [(ngModel)]="phoneNumber">
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Dirección</label>
+              <input type="text" class="form-control" placeholder="ingresa dirección" [(ngModel)]="address">
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Ciudad</label>
+              <input type="text" class="form-control" placeholder="ingresa estado" [(ngModel)]="city">
+            </div>
+            <div class="col-md-12">
+              <label class="labels">Barrio</label>
+              <input type="text" class="form-control" placeholder="ingresa área" [(ngModel)]="neighborhood">
+            </div>
+          </div>
+          <div class="mt-5 text-center">
+            <button class="btn btn-primary profile-button" type="button" (click)="guardarPerfilEditado()">Guardar Perfil</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
