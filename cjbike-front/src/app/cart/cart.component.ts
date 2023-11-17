@@ -1,6 +1,8 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { CarritoService } from './cart.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import axios from 'axios';
+
 
 @Component({
   selector: 'app-cart',
@@ -101,9 +103,19 @@ export class CartComponent {
   }
 
   removerDelCarrito(producto: any): void {
-    this.carritoService.removerDelCarrito(producto);
-    this.carrito = this.carritoService.getCarrito();
-    this.changeDetectorRef.detectChanges();
+
+    axios.post('http://localhost:3000/aumentarstock', { id:producto.id, cantidad:producto.cantidad })
+      .then(response => {
+        if (response.data.success) {  
+          this.carritoService.removerDelCarrito(producto);
+          this.carrito = this.carritoService.getCarrito();
+          this.changeDetectorRef.detectChanges();
+        }
+      })
+      .catch(error => {
+        console.error('Error al remover del carrito:', error);
+        window.alert('Error al remover del carrito');
+      });
   }
 
   calcularSubtotal(): number {
@@ -120,6 +132,66 @@ export class CartComponent {
   actualizarCantidad(producto: any): void {
     this.carritoService.actualizarCantidadEnCarrito(producto);
   }
+
+  async actualizarCarrito(): Promise<void> {
+    const carritolocal = this.carritoService.getCarrito2();
+    const carritoreal = this.carritoService.getCarrito();
+    let retorno = "No se pudo agregar las unidades en ";
+  
+    for (let i = 0; i < carritolocal.length; i++) {
+      console.log(`Iteración ${i + 1}`);
+  
+      if (carritolocal[i].cantidad > carritoreal[i].cantidad) {
+        console.log('Disminuir stock');
+        try {
+          const response = await axios.post('http://localhost:3000/disminuirstock', {
+            id: carritolocal[i].id,
+            cantidad: carritolocal[i].cantidad - carritoreal[i].cantidad
+          });
+  
+          console.log('Respuesta disminuir stock:', response.data);
+  
+          if (response.data.success) {
+            carritoreal[i].cantidad = carritolocal[i].cantidad;
+            console.log('Cantidad actualizada en carritoreal:', carritoreal[i].cantidad);
+          } else {
+            retorno += carritolocal[i].nombre;
+            carritolocal[i].cantidad = carritoreal[i].cantidad;
+            window.alert(carritolocal[i].cantidad);
+            this.carritoService.actualizarCantidadEnCarrito(carritolocal[i]);
+          }
+        } catch (error) {
+          console.error('Error al disminuir stock:', error);
+          window.alert('Error al disminuir stock');
+        }
+      } else if (carritolocal[i].cantidad < carritoreal[i].cantidad) {
+        console.log('Aumentar stock');
+        try {
+          const response = await axios.post('http://localhost:3000/aumentarstock', {
+            id: carritolocal[i].id,
+            cantidad: carritoreal[i].cantidad - carritolocal[i].cantidad
+          });
+  
+          console.log('Respuesta aumentar stock:', response.data);
+  
+          if (response.data.success) {
+            carritoreal[i].cantidad = carritolocal[i].cantidad;
+            console.log('Cantidad actualizada en carritoreal:', carritoreal[i].cantidad);
+          }
+        } catch (error) {
+          console.error('Error al aumentar stock:', error);
+          window.alert('Error al aumentar stock');
+        }
+      }
+    }
+  
+    localStorage.setItem('carrito', JSON.stringify(carritoreal));
+    localStorage.setItem('carrito2', JSON.stringify(carritolocal));
+    window.alert(retorno);
+    this.carrito=this.carritoService.getCarrito();
+  }
+  
+  
 
   realizarPago(): void {
     console.log('Procesando pago...');

@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CarritoService } from '../cart/cart.service';
+import axios from 'axios';
 
 @Component({
   selector: 'app-single-product',
@@ -27,11 +28,19 @@ export class SingleProductComponent {
     // Modificación aquí: Agrega la cantidad al objeto del producto
     const productoConCantidad = { ...this.producto, cantidad: this.cantidad };
 
-    // Imprimir información en consola para depuración
-    console.log('Producto con cantidad:', productoConCantidad);
-
     // Llama al servicio de carrito para agregar el producto con la cantidad especificada
-    this.carritoService.agregarAlCarrito(productoConCantidad);
-    window.alert('Producto añadido al carrito');
+    axios.post('http://localhost:3000/disminuirstock', { id: this.producto.id, cantidad: this.cantidad })
+      .then(response => {
+        if (response.data.success) {
+          this.carritoService.agregarAlCarrito(productoConCantidad);
+          window.alert('Producto añadido al carrito');
+        } else {
+          window.alert('Error al agregar al carrito: ' + response.data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error al agregar al carrito:', error);
+        window.alert('Error al agregar al carrito');
+      });
   }
 }
