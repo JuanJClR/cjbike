@@ -1,47 +1,38 @@
-<!-- header -->
-<div class="top-header-area" id="sticker">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 col-sm-12 text-center">
-        <div class="main-menu-wrap">
-          <!-- logo -->
-          <div class="site-logo">
-            <a href="index.html">
-              <img src="assets/img/logo.png" alt="">
-            </a>
-          </div>
-          <!-- logo -->
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="assets/img/logo.png" alt="">
+							</a>
+						</div>
+						<!-- logo -->
 
-          <!-- menu start -->
-          <nav class="main-menu">
-            <ul>
-              <li class="current-list-item"><a [routerLink]="['/home']">Inicio</a></li>
-              <li><a [routerLink]="['/about']">Nosotros</a></li>
-              <li><a [routerLink]="['/contact']">Contacto</a></li>
-              <li><a [routerLink]="['/product']">Tienda</a></li>
-              <li>
-                <div class="header-icons">
-                  <a class="shopping-cart" [routerLink]="['/cart']"><i class="fas fa-shopping-cart"></i></a>
-                  <ng-container *ngIf="usuarioAutenticado; else showLogin">
-                    <a class="shopping-cart" [routerLink]="['/perfil']">
-                      <i class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;{{ nombreUsuario }}
-                    </a>
-                  </ng-container>
-                  <ng-template #showLogin>
-                    <a class="shopping-cart" [routerLink]="['/login']"><i class="fas fa-user"></i> Iniciar sesión</a>
-                  </ng-template>
-                  <a class="shopping-cart" href="#" *ngIf="usuarioAutenticado" (click)="logout()">
-                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </nav>
-          <div class="mobile-menu"></div>
-          <!-- menu end -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end header -->
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li class="current-list-item"><a [routerLink]="['/home']">Inicio</a></li>
+								<li><a [routerLink]="['/about']">Nosotros</a></li>
+								<li><a [routerLink]="['/contact']">Contacto</a></li>
+								<li><a [routerLink]="['/product']">Tienda</a></li>
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" [routerLink]="['/cart']"><i class="fas fa-shopping-cart"></i></a>
+                    <a class="shopping-cart" href="" [routerLink]="['/login']" ><i class="fas fa-user"></i></a>
+									</div>
+								</li>
+							</ul>
+						</nav>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+

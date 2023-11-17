@@ -4,7 +4,7 @@ const usersRef = db.collection('usuarios');
 
 async function registro(req, res) {
   try {
-    const { name, email, password, address, neighborhood, phoneNumber, city} = req.body;
+    const { name, email, password} = req.body;
 
     const nameExists = await usersRef.where('usuario', '==', name).get();
 
@@ -21,12 +21,7 @@ async function registro(req, res) {
     await usersRef.doc(userRecord.uid).set({
       email,
       usuario: name,
-      city: city,
-      neighborhood: neighborhood,
-      phoneNumber: phoneNumber,
-      address: address,
     });
-    
 
 
     res.status(201).send({ message: 'Usuario registrado exitosamente' });

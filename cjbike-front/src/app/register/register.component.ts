@@ -9,27 +9,15 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterComponent {
+
   name: string = '';
   email: string = '';
   password: string = '';
   errorMessage: string = '';
-  city: string = '';
-  neighborhood: string = '';
-  phoneNumber: string = '';
-  address: string = '';
-
   constructor(private router: Router) { }
 
   onSubmit() {
-    const data = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-      city: this.city,
-      neighborhood: this.neighborhood,
-      phoneNumber: this.phoneNumber,
-      address: this.address
-    };
+    const data = { name: this.name, email: this.email, password: this.password };
 
     axios.post('http://localhost:3000/register', data)
       .then(response => {
