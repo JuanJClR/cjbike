@@ -1,9 +1,7 @@
-// productos.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { Router } from '@angular/router';
-import { CarritoService } from '../cart/cart.service'; // Asegúrate de que la ruta sea correcta
+import { CarritoService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-productos',
@@ -21,22 +19,33 @@ export class ProductosComponent implements OnInit {
   }
 
   getProducts() {
-    axios.get('http://localhost:3000/productos')
+    axios.get('http://localhost:3000/obtenerproductos')
       .then(response => {
         this.productos = response.data;
+      })
+      .catch(error => {
+        console.error('Error al obtener productos:', error);
       });
   }
 
   addToCart(producto: any): void {
-    const cantidad = 1; // Puedes establecer la cantidad predeterminada o permitir al usuario elegir
-  
-    // Modificación aquí: Agrega la cantidad al objeto del producto
+    const cantidad = 1;
     const productoConCantidad = { ...producto, cantidad };
-  
-    this.carritoService.agregarAlCarrito(productoConCantidad);
-    window.alert('Producto añadido al carrito');
+
+    axios.post('http://localhost:3000/disminuirstock', { id: producto.id, cantidad })
+      .then(response => {
+        if (response.data.success) {
+          this.carritoService.agregarAlCarrito(productoConCantidad);
+          window.alert('Producto añadido al carrito');
+        } else {
+          window.alert('Error al agregar al carrito: ' + response.data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error al agregar al carrito:', error);
+        window.alert('Error al agregar al carrito');
+      });
   }
-  
 
   navigateToDetalleProducto(producto: any) {
     this.router.navigate(['/producto', producto.nombre], { state: { producto } });
