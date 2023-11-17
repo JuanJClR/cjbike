@@ -27,10 +27,10 @@ export class CartComponent {
 
   initConfig(): void {
     this.payPalConfig = {
-      clientId: 'sb',
+      clientId: 'AdF_h5RRAIPLd9b_Ip5I9A-AhbHyqsnesu1U6iemwEC0HLsc1y9Nj70aGbBvn_dWBmI-XYEpgKb7bsXn',
       createOrderOnClient: (data: any): ICreateOrderRequest => {
         const subtotal = this.calcularSubtotal();
-        const envio = 150;
+        const envio = 1;
 
         return {
           intent: 'CAPTURE',
@@ -125,7 +125,7 @@ export class CartComponent {
 
   calcularTotal(): number {
     const subtotal = this.calcularSubtotal();
-    const envio = 150; // Ejemplo de envío fijo
+    const envio = 1; // Ejemplo de envío fijo
     return subtotal + envio;
   }
 
