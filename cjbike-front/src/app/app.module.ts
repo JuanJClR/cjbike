@@ -5,6 +5,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 import { AppComponent } from './app.component';
@@ -50,6 +51,7 @@ const firebaseConfig = {
     PruebaComponent,
   ],
   imports: [
+    NgxPayPalModule,
     FormsModule,
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),

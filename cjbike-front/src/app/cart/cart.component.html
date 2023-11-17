@@ -39,11 +39,11 @@
                 <td class="product-remove"><a (click)="removerDelCarrito(producto)"><i class="far fa-window-close"></i></a></td>
                 <td class="product-image"><img [src]="producto.img" alt=""></td>
                 <td class="product-name">{{ producto.nombre }}</td>
-                <td class="product-price">${{ producto.precio }}</td>
+                <td class="product-price">{{ (producto.precio | currency:'USD':'symbol':'1.0-0') }}</td>
                 <td class="product-quantity">
                   <input type="number" [(ngModel)]="producto.cantidad" (change)="actualizarCantidad(producto)" placeholder="0">
                 </td>
-                <td class="product-total">${{ producto.precio * producto.cantidad }}</td>
+                <td class="product-total">{{ (producto.precio * producto.cantidad | currency:'USD':'symbol':'1.0-0') }}</td>
               </tr>
             </tbody>
           </table>
@@ -63,32 +63,20 @@
             <tbody>
               <tr class="total-data">
                 <td><strong>Subtotal: </strong></td>
-                <td>${{ calcularSubtotal() }}</td>
+                <td>{{ (calcularSubtotal() | currency:'USD':'symbol':'1.0-0') }}</td>
               </tr>
               <tr class="total-data">
                 <td><strong>Envío: </strong></td>
-                <td>$150</td>
+                <td>{{ (150 | currency:'USD':'symbol':'1.0-0') }}</td>
               </tr>
               <tr class="total-data">
                 <td><strong>Total: </strong></td>
-                <td>${{ calcularTotal() }}</td>
+                <td>{{ (calcularTotal() | currency:'USD':'symbol':'1.0-0') }}</td>
               </tr>
             </tbody>
           </table>
           <div class="cart-buttons">
-            <button  class="boxed-btn">Actualizar Carrito</button>
-            <button (click)="realizarPago()" class="boxed-btn black">Pagar</button>
-          </div>
-        </div>
-
-        <!-- Sección de Cupones -->
-        <div class="coupon-section">
-          <h3>Aplicar Cupón</h3>
-          <div class="coupon-form-wrap">
-            <form action="index.html">
-              <p><input type="text" placeholder="Cupón"></p>
-              <p><input type="submit" value="Aplicar"></p>
-            </form>
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
           </div>
         </div>
       </div>
@@ -98,3 +86,5 @@
 <!-- Fin del Contenido del Carrito -->
 
 <app-footer></app-footer>
+
+<!-- Agrega el parámetro currency=USD al script de PayPal -->
