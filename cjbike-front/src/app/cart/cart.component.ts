@@ -75,12 +75,31 @@ export class CartComponent {
         console.log('Transacción aprobada pero no autorizada', data, actions);
         actions.order.get().then((details: any) => {
           console.log('Detalles completos de la orden: ', details);
+          // Aquí es donde debes informar a tu servidor sobre la transacción aprobada
+          axios.post('http://localhost:3000/aprobar-orden', { orderId: data.orderID, orderDetails: details })
+            .then(response => {
+              console.log('La orden ha sido aprobada con éxito', response.data);
+            })
+            .catch(e => {
+              console.error('Hubo un error al aprobar la orden', e);
+            });
         });
       },
       onClientAuthorization: (data: any) => {
         console.log('Se debe informar al servidor sobre la transacción completada en este punto', data);
         this.showSuccess = true;
+        // Aquí es donde debes informar a tu servidor sobre la transacción completada
+        axios.post('http://localhost:3000/capturar-orden', { orderId: data.id, amount: data.purchase_units[0].amount })
+          .then(response => {
+            console.log('La orden ha sido capturada con éxito', response.data);
+          })
+          .catch(e => {
+            console.error('Hubo un error al capturar la orden', e);
+          });
       },
+      
+      
+      
       onCancel: (data: any, actions: any) => {
         console.log('Cancelado', data, actions);
         this.showCancel = true;
